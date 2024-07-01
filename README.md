@@ -1,80 +1,45 @@
-# IISSI-2 IS: Simulacro de examen de laboratorio
-
-## Enunciado
-
-Una vez se ha puesto en marcha la primera versión de DeliverUS, los inversores han solicitado la inclusión de una nueva funcionalidad que consiste en ofrecer a los propietarios la posibilidad de promocionar sus restaurantes. Cada propietario sólo podrá promocionar uno de sus restaurantes.
-
-Un propietario podrá promocionar un restaurante de dos maneras distintas:
-
-* En el formulario de creación de restaurante. Por defecto, se seleccionará la opción de no promocionado. Si el propietario indica que el nuevo restaurante debe estar promocionado, pero ya existían restaurantes promocionados del mismo propietario, al pulsar el botón `Save` se mostrará un error y no se creará el restaurante.
-
-* En la pantalla de "Mis restaurantes", mediante un botón mostrado junto a cada restaurante, que permitirá mediante su pulsación promocionar el restaurante en cuestión. Si el propietario pulsa el botón para promocionar un nuevo restaurante y ya existían otros restaurantes promocionados del mismo dueño, se procederá a promocionar el restaurante indicado y se marcará como "no promocionado" el restaurante que lo fuese anteriormente. La aplicación debe pedir confirmación al propietario cuando se pulse el botón; utilice para ello el componente suministrado `ConfirmationModal`, similar al componente `DeleteModal` utilizado en clase.
-
-Además, los restaurantes promocionados aparecerán siempre al principio de los listados de restaurantes que se le presentan tanto a los propietarios como a los clientes. Además de presentarse al principio, los restaurantes promocionados deben destacarse visualmente, por lo que aparecerá una etiqueta de texto `¡En promoción!` con el color principal de la marca.
-
-### Ejercicio 1
-
-Realice todos los cambios necesarios en el proyecto de backend para implementar el nuevo requisito.
-
-### Ejercicio 2
-
-Realice todos los cambios necesarios en el proyecto de frontend para implementar el nuevo requisito.
-
-![captura1](https://user-images.githubusercontent.com/19324988/235651836-d57d9c7e-4b8d-46a2-9154-b414a7abf702.png)
-
-![captura2](https://user-images.githubusercontent.com/19324988/235651849-4d03c7d9-f332-4952-8cbc-9fa5db4f97fb.png)
-
-![captura3](https://user-images.githubusercontent.com/19324988/235651853-e1d13916-4f47-4e17-97e0-5696b647bee7.png)
+# DeliverUS-Owner Monorepo
 
 ## Introducción
 
-Este repositorio incluye el backend completo (carpeta `DeliverUS-Backend`) y el frontend de `owner` (carpeta `DeliverUS-Frontend-Owner`). Servirá como base para realizar el examen de laboratorio de la asignatura.
+Este repositorio incluye el backend completo (carpeta `DeliverUS-Backend`) y el frontend de owner (carpeta `DeliverUS-Frontend-Owner`). Servirá como base para los exámenes de convocatoria de la asignatura.
 
 ## Preparación del entorno
 
-### a) Windows
+Windows:
 
 * Abra un terminal y ejecute el comando `npm run install:all:win`.
 
-### b) Linux/MacOS
+Linux/MacOS:
 
 * Abra un terminal y ejecute el comando `npm run install:all:bash`.
 
-## Ejecución
+## Ejecución y depuración
 
-### Backend
+* Para **ejecutar el backend**, abra un terminal y ejecute el comando `npm run start:backend`.
 
-* Para **rehacer las migraciones y seeders**, abra un terminal y ejecute el comando
-
-    ```Bash
-    npm run migrate:backend
-    ```
-
-* Para **ejecutarlo**, abra un terminal y ejecute el comando
-
-    ```Bash
-    npm run start:backend
-    ```
-
-### Frontend
-
-* Para **ejecutar la aplicación frontend de `owner`**, abra un nuevo terminal y ejecute el comando
-
-    ```Bash
-    npm run start:frontend:owner
-    ```
-
-## Depuración
+* Para **ejecutar el frontend**, abra un nuevo terminal y ejecute el comando `npm run start:frontend`.
 
 * Para **depurar el backend**, asegúrese de que **NO** existe una instancia en ejecución, pulse en el botón `Run and Debug` de la barra lateral, seleccione `Debug Backend` en la lista desplegable, y pulse el botón de *Play*.
 
-* Para **depurar el frontend**, asegúrese de que **EXISTE** una instancia en ejecución del frontend que desee depurar, pulse en el botón `Run and Debug` de la barra lateral, seleccione `Debug Frontend` en la lista desplegable, y pulse el botón de *Play*.
+* Para **depurar el frontend**, asegúrese de que **EXISTE** una instancia en ejecución, pulse en el botón `Run and Debug` de la barra lateral, seleccione `Debug Frontend` en la lista desplegable, y pulse el botón de *Play*.
 
-## Test
+* Para **rehacer las migraciones y seeders del backend**, abra un terminal y ejecute el comando `npm run migrate:backend`.
 
-* Para comprobar el correcto funcionamiento de backend puede ejecutar el conjunto de tests incluido a tal efecto. Para ello ejecute el siguiente comando:
+## Enunciado
 
-    ```Bash
-    npm run test:backend
-    ```
-**Advertencia: Los tests no pueden ser modificados.**
+La empresa ha decidido ofrecer a los propietarios la posibilidad de cambiar manualmente el estado de sus restaurantes abiertos (`online` u `offline`). En caso de que un restaurante tenga un estado `online` u `offline`, la nueva funcionalidad proporcionaría un botón para alternar entre ambos estados. De lo contrario, dicho botón no debe estar disponible.
+
+Tenga en cuenta que cualquier restaurante nuevo se almacena inicialmente como `offline` de forma predeterminada. Solo los restaurantes offline pueden estar en línea y viceversa. Por otro lado, si un restaurante alcanza un estado de `cerrado` o `cerrado temporalmente`, la posibilidad de cambio manual no estará disponible y su uso estará prohibido por el sistema. Además, tenga en cuenta que un restaurante tampoco podrá cambiar su estado si tiene pedidos con un valor nulo en `deliveredAt`.
+
+La nueva funcionalidad también implicará proporcionar la lista de restaurantes propiedad del usuario ordenados por estado (ascendentemente) y, para el mismo estado, por nombre. Finalmente, el estado de cada restaurante debe ser visible (consulte las imágenes a continuación).
+
+El sistema debe mostrar la lista de restaurantes por propietario como se muestra en las siguientes capturas de pantalla:
+
+<img alt="Image1" src="image1.png">
+
+<img alt="Image2" src="image2.png">
+
+<img alt="Image2" src="image3.png">
+
+Le pedimos que implemente los cambios necesarios en el backend y frontend para incluir la funcionalidad requerida.
